@@ -6,26 +6,43 @@ import java.util.Scanner;
  * Created by andykim on 1/29/17.
  */
 public class BlackJackEngine extends BlackJack {
-        public void runBlackJack() {
-                dealCards();
+
+    String response;
+
+    public void runBlackJack() {
+        dealCards();
+        setPrintedPlayerHand(printHand(playerHand));
+        determineHandValue(playerHand);
+        setPrintedDealerHand(printHand(dealerHand));
+        determineHandValue(dealerHand);
+        System.out.println("You have " + getPrintedPlayerHand());
+        System.out.println("The dealer has " + getPrintedDealerHand());
+        Scanner input = new Scanner(System.in);
+        System.out.println("Do you hit or stay?");
+        do {
+            response = input.nextLine();
+            if (response.equals("hit")) {
+                playerHits(playerHand);
+                determineHandValue(playerHand);
                 setPrintedPlayerHand(printHand(playerHand));
-                setPrintedDealerHand(printHand(dealerHand));
-                System.out.println("You have " + getPrintedPlayerHand());
-                System.out.println("The dealer has " + getPrintedDealerHand());
-                Scanner input = new Scanner(System.in);
-                while (!input.equals("stay")) {
-                        boolean checker = true;
-                        playerHits(playerHand, checker);
-                        System.out.println("Do you hit or stay?");
-                        String nextResponse = input.nextLine();
-                        if (!nextResponse.equals("hit")) {
-                                break;
-                        }
-                }
-                System.out.println("Dealer's turn");
-                playerHits(dealerHand, doesDealerHit(dealerHand));
-                didPlayerWin(dealerHand, playerHand);
-                {
-                }
-        }
+            }
+
+            System.out.println("You have " + getPrintedPlayerHand());
+        } while (!response.equals("stay"));
+
+
+        System.out.println("Dealer's turn");
+        while (doesDealerHit(dealerHand)) {
+
+            playerHits(dealerHand);
+            determineHandValue(dealerHand);
+            setPrintedDealerHand(printHand(dealerHand));
+            System.out.println("The dealer has " + getPrintedDealerHand());
+            }
+            didPlayerWin(dealerHand, playerHand);
+
+
+
+    }
 }
+

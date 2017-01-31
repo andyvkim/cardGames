@@ -2,6 +2,8 @@ import org.junit.Assert;
 import org.junit.Test;
 import Kim.Andy.CardGames.*;
 import java.util.ArrayList;
+
+
 public class BlackJackTest {
 
     BlackJack blackJack = new BlackJack();
@@ -59,7 +61,7 @@ public class BlackJackTest {
     public void doesPlayerHitTest(){
         player.add(aceTest);
         int expected = 2;
-        blackJack.playerHits(player, blackJack.doesPlayerHit("hit"));
+        blackJack.playerHits(player);
         int actual = player.size();
         Assert.assertEquals("I expect two cards in players hand",expected, actual);
     }
@@ -68,7 +70,7 @@ public class BlackJackTest {
         dealer.add(aceTest);
         dealer.add(kingTest);
         int expected = 2;
-        blackJack.playerHits(dealer, blackJack.doesDealerHit(dealer));
+        blackJack.playerHits(dealer);
         int actual = dealer.size();
         Assert.assertEquals("I expect two cards in dealers hand",expected, actual);
     }
@@ -77,7 +79,7 @@ public class BlackJackTest {
         dealer.add(fiveTest);
         dealer.add(kingTest);
         int expected = 3;
-        blackJack.playerHits(dealer, blackJack.doesDealerHit(dealer));
+        blackJack.playerHits(dealer);
         int actual = dealer.size();
         Assert.assertEquals("I expect three cards in dealers hand",expected, actual);
     }
@@ -86,7 +88,7 @@ public class BlackJackTest {
         dealer.add(kingTest);
         dealer.add(kingTest);
         int expected = 2;
-        blackJack.playerHits(dealer, blackJack.doesDealerHit(dealer));
+        blackJack.playerHits(dealer);
         int actual = dealer.size();
         Assert.assertEquals("I expect dealer to stay because he has value between 17 and 20",expected, actual);
     }

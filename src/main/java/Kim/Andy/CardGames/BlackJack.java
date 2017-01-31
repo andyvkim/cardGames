@@ -1,14 +1,10 @@
 package Kim.Andy.CardGames;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Scanner;
 
 
 
 public class BlackJack extends CardGames {
-
-    int winCount;
 
 
     public ArrayList<Card> playerHand = new ArrayList<Card>();
@@ -81,12 +77,11 @@ public class BlackJack extends CardGames {
     public boolean doesPlayerHit(String response){
         return (response.equals("hit"));
 
-
     }
-    public void playerHits(ArrayList<Card> player, boolean checker){
-        if(checker){
+    public void playerHits(ArrayList<Card> player){
+
             deckOfCards.drawCard(player);
-        }
+
     }
 
     public boolean didPlayerWin(ArrayList<Card> dealerHand, ArrayList<Card> playerHand){
